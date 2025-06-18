@@ -27,6 +27,8 @@ json
 {
   "Content-Type": "application/json"
 }
+
+
 Body:
 
 json
@@ -35,5 +37,7 @@ json
 }
 
 Output:
+
+
 json
 {"category": "Work"}
