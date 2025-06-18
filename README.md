@@ -1,0 +1,16 @@
+# Smart Email Classifier & Rewriter
+
+Gen-AI powered email processing service with classification and tone rewriting capabilities.
+
+## Features
+- Email classification (Work/Personal/Finance/Spam)
+- Email rewriting in specified tones (professional/friendly/concise)
+- FastAPI REST endpoints
+- Docker container support
+
+## Setup Instructions
+
+1. **Clone repository**
+   ```bash
+   git clone https://github.com/yourusername/email-ai-service.git
+   cd email-ai-service
