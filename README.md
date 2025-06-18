@@ -12,5 +12,5 @@ Gen-AI powered email processing service with classification and tone rewriting c
 
 1. **Clone repository**
    ```bash
-   git clone https://github.com/yourusername/email-ai-service.git
+   https://github.com/nlakade/email-ai-service
    cd email-ai-service
