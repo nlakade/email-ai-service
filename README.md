@@ -17,7 +17,7 @@ Gen-AI powered email processing service with classification and tone rewriting c
 Set environment variables
 
 bash
-cp .env.example .env
+cp .env .env
 # Add your OpenAI API key to .env
 Install dependencies
 
@@ -27,28 +27,31 @@ Run service
 
 bash
 uvicorn app.main:app --reload
+
+
 Using Docker
 bash
 docker build -t email-ai .
 docker run -p 8000:8000 --env-file .env email-ai
-API Documentation
-Access interactive docs at http://localhost:8000/docs
 
-Endpoints
-POST /classify_email
+
+
+#Endpoints:
+http://localhost:8000/classify_email
+#POST /classify_email
 
 json
 {
   "email_content": "Your email text here..."
 }
-POST /rewrite_email
+#POST /rewrite_email
 
 json
 {
   "email_content": "Your email text here...",
   "tone": "professional"
 }
-Sample Requests
+#Sample Requests
 bash
 # Classification
 curl -X POST "http://localhost:8000/classify_email" \
@@ -59,7 +62,8 @@ curl -X POST "http://localhost:8000/classify_email" \
 curl -X POST "http://localhost:8000/rewrite_email" \
   -H "Content-Type: application/json" \
   -d '{"email_content": "Hey, can we push our meeting?", "tone": "professional"}'
-Sample Responses
+  
+#Sample Responses
 Classification
 
 json
@@ -72,12 +76,12 @@ json
 
 
 
-Postman Testing Guide
+#Postman Testing Guide
 use:
 
 URL: POST http://localhost:8000/classify_email
 
-Headers:
+#Headers:
 
 json
 {
@@ -85,14 +89,14 @@ json
 }
 
 
-Body:
+#Body:
 
 json
 {
   "email_content": "Team, the project deadline is extended"
 }
 
-Output:
+#Output:
 
 
 json
