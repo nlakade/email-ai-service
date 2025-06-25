@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Email-AI Service Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f4f4f4;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    textarea, select, input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .output {
+      background: #fff;
+      padding: 15px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📧 Email-AI Service Demo</h1>
+
+  <!-- Email Classification -->
+  <h2>1. Email Classification</h2>
+  <textarea id="emailText" rows="6" placeholder="Paste your email text here..."></textarea>
+  <button onclick="classifyEmail()">Classify Email</button>
+  <div class="output" id="classificationResult">Result will appear here...</div>
+
+  <!-- Email Rewriting -->
+  <h2>2. Email Rewriting</h2>
+  <textarea id="rewriteText" rows="6" placeholder="Enter email content to rewrite..."></textarea>
+  <select id="toneSelect">
+    <option value="professional">Professional</option>
+    <option value="friendly">Friendly</option>
+    <option value="concise">Concise</option>
+  </select>
+  <button onclick="rewriteEmail()">Rewrite Email</button>
+  <div class="output" id="rewritingResult">Rewritten email will appear here...</div>
+
+  <script>
+    async function classifyEmail() {
+      const text = document.getElementById("emailText").value;
+      const res = await fetch("http://127.0.0.1:8000/classify_email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email_content: text })
+      });
+      const data = await res.json();
+      document.getElementById("classificationResult").innerText = JSON.stringify(data, null, 2);
+    }
+
+    async function rewriteEmail() {
+      const text = document.getElementById("rewriteText").value;
+      const tone = document.getElementById("toneSelect").value;
+      const res = await fetch("http://127.0.0.1:8000/rewrite_email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email_content: text, tone: tone })
+      });
+      const data = await res.json();
+      document.getElementById("rewritingResult").innerText = JSON.stringify(data, null, 2);
+    }
+  </script>
+
+</body>
+</html>
