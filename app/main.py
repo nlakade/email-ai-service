@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware  
 from pydantic import BaseModel
 from app.prompts import classify_email_prompt, rewrite_email_prompt
 from app.utils import get_llm_response
@@ -12,6 +13,14 @@ app = FastAPI(
     version="1.0",
     docs_url="/docs",
     redoc_url=None
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Configure logging
